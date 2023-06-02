@@ -146,7 +146,7 @@ for (i=(startAt-1); i<(endAt); i++){
   transx=midimy-midpointy;
   setBatchMode("show");
   for(trans = 0; trans < roinum; trans++){
-    roiManager("Show");
+    roiManager("Show All");
     roiManager("select",trans);
     roiManager("translate", transx, transy);}
   for(scl = 0; scl <roinum; scl++){
