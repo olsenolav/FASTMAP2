@@ -145,12 +145,15 @@ for (i=(startAt-1); i<(endAt); i++){
   transy=midimx-midpointx;
   transx=midimy-midpointy;
   setBatchMode("show");
+  roiManager("Show All");
   for(trans = 0; trans < roinum; trans++){
-    roiManager("select",trans);
-    roiManager("Show All");
+    roiManager("select", trans);
     roiManager("translate", transx, transy);}
+  setOption("Show All", false);
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
+    setOption("Show All", true);
+    roiManager("Show All");
     run("Scale... ", "x=xscale y=yscale centered");
     waitForUser("Move and adjust scaled ROI");
     roiManager("Update");}
