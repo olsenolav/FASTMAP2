@@ -149,11 +149,11 @@ for (i=(startAt-1); i<(endAt); i++){
   for(trans = 0; trans < roinum; trans++){
     roiManager("select", trans);
     roiManager("translate", transx, transy);}
-  setOption("Show All", false);
+  roiManager("show none");
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
-    setOption("Show All", true);
     roiManager("Show All");
+    roiManager("select",scl);
     run("Scale... ", "x=xscale y=yscale centered");
     waitForUser("Move and adjust scaled ROI");
     roiManager("Update");}
