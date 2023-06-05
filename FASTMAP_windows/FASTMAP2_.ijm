@@ -152,7 +152,7 @@ for (i=(startAt-1); i<(endAt); i++){
   roiManager("show none");
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
-    roiManager("Show All");
+    roiManager("draw");
     roiManager("select",scl);
     run("Scale... ", "x=xscale y=yscale centered");
     waitForUser("Move and adjust scaled ROI");
