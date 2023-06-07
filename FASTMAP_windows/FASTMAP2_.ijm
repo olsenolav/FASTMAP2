@@ -149,14 +149,14 @@ for (i=(startAt-1); i<(endAt); i++){
   for(trans = 0; trans < roinum; trans++){
     roiManager("select", trans);
     roiManager("translate", transx, transy);}
-  roiManager("show none");
+  //roiManager("show none");
   for(scl = 0; scl <roinum; scl++){
-    for (done = 0; done < scl; done++) {
-      roiManager("select",done);
-      roiManager("draw");}
+    //for (done = 0; done < scl; done++) {
+      //roiManager("select",done);
+      //roiManager("draw");}
     roiManager("select",scl);
     run("Scale... ", "x=xscale y=yscale centered");
-    waitForUser("Move and adjust scaled ROI");
+    waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
   roiManager("save", outname);
