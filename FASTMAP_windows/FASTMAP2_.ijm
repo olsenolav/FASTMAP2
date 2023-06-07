@@ -158,8 +158,8 @@ for (i=(startAt-1); i<(endAt); i++){
   for(auto = 0; auto < roinum; auto++){
     roiManager("select", auto);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
-    autoDx = (xscale*(Ix-Tx))-Ix;
-    autoDy = (yscale*(Iy-Ty))-Iy;
+    autoDx = (xscale*(Ix-Tx));
+    autoDy = (yscale*(Iy-Ty));
     roiManager("translate", autoDx, autoDy);}
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
