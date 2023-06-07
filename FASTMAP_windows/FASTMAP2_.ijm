@@ -149,13 +149,20 @@ for (i=(startAt-1); i<(endAt); i++){
   for(trans = 0; trans < roinum; trans++){
     roiManager("select", trans);
     roiManager("translate", transx, transy);}
-  //roiManager("show none");
   for(scl = 0; scl <roinum; scl++){
-    //for (done = 0; done < scl; done++) {
-      //roiManager("select",done);
-      //roiManager("draw");}
     roiManager("select",scl);
-    run("Scale... ", "x=xscale y=yscale centered");
+    run("Scale... ", "x=xscale y=yscale centered");}
+  roiManager("combine");
+  roiManager("add");
+  roiManager("select",(roinum));
+  Roi.getBounds(Tx, Ty, roiw, roih);
+  for(auto = 0; auto < roinum; auto++){
+    roiManager("select", auto);
+    Roi.getBounds(Ix, Iy, roiIw, roiIh);
+    autoDx = Ix-(xscale*(Tx-Ix));
+    autoDy = Iy-(yscale*(Ty-Iy));
+    roiManager("translate", autoDx, autoDy);}
+  for(move = 0; move <roinum; move++){
     waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
