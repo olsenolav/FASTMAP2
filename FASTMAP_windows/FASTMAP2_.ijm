@@ -111,7 +111,7 @@ for (i=(startAt-1); i<(endAt); i++){
   waitForUser("1. Draw a rectangle around the tissue section then press 'OK'");
   roiManager("Add");
   roiManager("Select", 0);
-  Roi.getBounds(x,y,sectionw,sectionh);
+  Roi.getBounds(Lx,Ly,sectionw,sectionh);
   roiManager("Select", 0);
   roiManager("Deselect");
   roiManager("Delete");
@@ -158,8 +158,8 @@ for (i=(startAt-1); i<(endAt); i++){
   for(auto = 0; auto < roinum; auto++){
     roiManager("select", auto);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
-    autoDx = xscale*(Ix-Tx)-Ix+Tx;
-    autoDy = yscale*(Iy-Ty)-Iy+Ty;
+    autoDx = xscale*(Ix-Tx)-Ix+Lx;
+    autoDy = yscale*(Iy-Ty)-Iy+Ly;
     roiManager("translate", autoDx, autoDy);}
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
