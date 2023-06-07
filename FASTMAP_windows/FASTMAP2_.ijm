@@ -155,16 +155,14 @@ for (i=(startAt-1); i<(endAt); i++){
   Roi.getBounds(Tx, Ty, roiw, roih);
   roiManager("select",roinum);
   roiManager("Delete");
-  for(auto = 0; auto < roinum; auto++){
-    roiManager("select", auto);
+  for(scl = 0; scl <roinum; scl++){
+    roiManager("select",scl);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
     autoDx = sectionw+Lx-Ix-xscale*(Tx-Ix);
     autoDy = sectionh+Ly-Iy-yscale*(Ty-Iy);
-    roiManager("translate", autoDx, autoDy);}
-  for(scl = 0; scl <roinum; scl++){
-    roiManager("select",scl);
     run("Scale... ", "x=xscale y=yscale centered");
-    roiManager("Update");}
+    roiManager("Update");
+    roiManager("translate", autoDx, autoDy);}
   for(final=0; final<roinum; final++){
     roiManager("select",final);
     waitForUser("Move and adjust " + Roi.getName);
