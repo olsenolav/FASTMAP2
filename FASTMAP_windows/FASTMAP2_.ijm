@@ -155,15 +155,18 @@ for (i=(startAt-1); i<(endAt); i++){
   Roi.getBounds(Tx, Ty, roiw, roih);
   roiManager("select",roinum);
   roiManager("Delete");
-  for(auto = 0; auto < roinum; auto++){
-    roiManager("select", auto);
-    Roi.getBounds(Ix, Iy, roiIw, roiIh);
-    autoDx = (xscale*(Ix-Tx));
-    autoDy = (yscale*(Iy-Ty));
-    roiManager("translate", autoDx, autoDy);}
+  //for(auto = 0; auto < roinum; auto++){
+    //roiManager("select", auto);
+    //Roi.getBounds(Ix, Iy, roiIw, roiIh);
+    //autoDx = (xscale*(Ix-Tx));
+    //autoDy = (yscale*(Iy-Ty));
+    //roiManager("translate", autoDx, autoDy);}
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
     run("Scale... ", "x=xscale y=yscale centered");
+    roiManager("Update");}
+  for(final=0; final<roinum; final++){
+    roiManager("select",final);
     waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
