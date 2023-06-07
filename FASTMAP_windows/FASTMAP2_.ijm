@@ -151,21 +151,23 @@ for (i=(startAt-1); i<(endAt); i++){
     roiManager("translate", transx, transy);}
   for(scl = 0; scl <roinum; scl++){
     roiManager("select",scl);
-    run("Scale... ", "x=xscale y=yscale centered");}
-  roiManager("combine");
-  roiManager("add");
-  roiManager("select",(roinum));
-  Roi.getBounds(Tx, Ty, roiw, roih);
-  roiManager("select",roinum);
-  roiManager("Delete");
-  for(auto = 0; auto < roinum; auto++){
-    roiManager("select", auto);
-    Roi.getBounds(Ix, Iy, roiIw, roiIh);
-    autoDx = (xscale*(Tx-Ix))-Ix;
-    autoDy = (yscale*(Ty-Iy))-Iy;
-    roiManager("translate", autoDx, autoDy);}
-  for(final = 0; final < roinum; final++){
-    roiManager("select", final);
+    roiManager.scale(xscale,yscale,false);
+    //run("Scale... ", "x=xscale y=yscale centered");
+  //  }
+  //roiManager("combine");
+  //roiManager("add");
+  //roiManager("select",(roinum));
+  //Roi.getBounds(Tx, Ty, roiw, roih);
+  //roiManager("select",roinum);
+  //roiManager("Delete");
+  //for(auto = 0; auto < roinum; auto++){
+  //  roiManager("select", auto);
+  //  Roi.getBounds(Ix, Iy, roiIw, roiIh);
+  //  autoDx = Ix-(xscale*(Tx-Ix));
+  //  autoDy = Iy-(yscale*(Ty-Iy));
+  //  roiManager("translate", autoDx, autoDy);}
+  //for(final = 0; final < roinum; final++){
+  //  roiManager("select", final);
     waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
