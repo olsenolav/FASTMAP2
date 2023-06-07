@@ -149,10 +149,6 @@ for (i=(startAt-1); i<(endAt); i++){
   for(trans = 0; trans < roinum; trans++){
     roiManager("select", trans);
     roiManager("translate", transx, transy);}
-  for(scl = 0; scl <roinum; scl++){
-    roiManager("select",scl);
-    run("Scale... ", "x=xscale y=yscale centered");
-    roiManager("Update");}
   roiManager("combine");
   roiManager("add");
   roiManager("select",(roinum));
@@ -162,11 +158,12 @@ for (i=(startAt-1); i<(endAt); i++){
   for(auto = 0; auto < roinum; auto++){
     roiManager("select", auto);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
-    autoDx = (xscale*(Ix-Tx));
-    autoDy = (yscale*(Iy-Ty));
+    autoDx = (xscale*(Ix-Tx))-Ix;
+    autoDy = (yscale*(Iy-Ty))-Iy;
     roiManager("translate", autoDx, autoDy);}
-  for(final = 0; final < roinum; final++){
-    roiManager("select", final);
+  for(scl = 0; scl <roinum; scl++){
+    roiManager("select",scl);
+    run("Scale... ", "x=xscale y=yscale centered");
     waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
