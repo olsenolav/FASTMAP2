@@ -160,7 +160,7 @@ for (i=(startAt-1); i<(endAt); i++){
   run("Scale... ", "x=xscale y=yscale centered");
   roiManager("Update");
   Roi.getBounds(CurrX, CurrY, Currw, Currh);
-  roiManager("translate", (-CurrX+xscale*(x1-Tx)+midimx), (-CurrY+yscale*(y1-Ty)+midimy));
+  roiManager("translate", (xscale*(x1-Tx)+midimx-CurrX), (yscale*(y1-Ty)+midimy-CurrY));
   roiManager("Update");
   Roi.getBounds(x2, y2, Currw, Currh);
   waitForUser("Move and adjust " + Roi.getName);
@@ -174,8 +174,8 @@ for (i=(startAt-1); i<(endAt); i++){
     run("Scale... ", "x=xscale y=yscale centered");
     roiManager("Update");
     Roi.getBounds(CurrX, CurrY, Currw, Currh);
-    autoDx = -CurrX+xscale*(Ix-Tx)+userShiftx;
-    autoDy = -CurrY+yscale*(Iy-Ty)+userShifty;
+    autoDx = (xscale*(Ix-Tx)+userShiftx-CurrX);
+    autoDy = (yscale*(Iy-Ty)+userShifty-CurrY);
     roiManager("translate", autoDx, autoDy);}
   for(final=1; final<roinum; final++){
     roiManager("select",final);
