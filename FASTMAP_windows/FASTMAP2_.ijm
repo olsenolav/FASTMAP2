@@ -165,8 +165,8 @@ for (i=(startAt-1); i<(endAt); i++){
   waitForUser("Move and adjust " + Roi.getName);
   roiManager("Update");
   Roi.getBounds(x3, y3, roiIw, roiIh);
-  userShiftx = midimx+(x3-x2);
-  userShifty = midimy+(y3-y2);
+  userShiftx = midimx-(x3-x2);
+  userShifty = midimy-(y3-y2);
   for(scl = 1; scl <roinum; scl++){
     roiManager("select",scl);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
