@@ -123,16 +123,16 @@ for (i=(startAt-1); i<(endAt); i++){
   //setBatchMode(true);
   getDimensions(imh,imw,chan,sli,fra);
   ROIname="RoiSet_"+plateNum+".zip";
-  ROIfile=platepath+ROIname;
+  ROIfile=platesubfold+ROIname;
   roiManager("Open", ROIfile);
   roinum=roiManager("count");
   roiManager("deselect");
   roiManager("combine");
   roiManager("add");
   roiManager("select",(roinum));
-  Roi.getBounds(x, y, roiw, roih)
+  Roi.getBounds(x, y, roiw, roih);
   roiManager("select",roinum);
-  roiManager("delete");
+  roiManager("Delete");
   xscale=(sectionw/roiw);
   yscale=(sectionh/roih);
   midpointx=roiw/2;
@@ -142,24 +142,48 @@ for (i=(startAt-1); i<(endAt); i++){
   transy=midimx-midpointx;
   transx=midimy-midpointy;
   setBatchMode("show");
-  roiManager("show all");
+  roiManager("Show All");
   for(trans = 0; trans < roinum; trans++){
-    roiManager("select",trans);
+    roiManager("select", trans);
     roiManager("translate", transx, transy);}
-  roiManager("show none");
-  for(scl = 0; scl <roinum; scl++){
-    for (done = 0; done < scl; done++) {
-      roiManager("select",done);
-      roiManager("draw");}
+  roiManager("combine");
+  roiManager("add");
+  roiManager("select",(roinum));
+  Roi.getBounds(Tx, Ty, roiw, roih);
+  roiManager("select",roinum);
+  roiManager("Delete");
+  roiManager("select",0);
+  Roi.getBounds(x1, y1, roiIw, roiIh);
+  run("Scale... ", "x=xscale y=yscale centered");
+  roiManager("Update");
+  Roi.getBounds(CurrX, CurrY, Currw, Currh);
+  roiManager("translate", (xscale*(x1-Tx)+midimx-CurrX), (yscale*(y1-Ty)+midimy-CurrY));
+  roiManager("select", 0);
+  Roi.getBounds(x2, y2, Currw, Currh);
+  waitForUser("Move and adjust " + Roi.getName);
+  roiManager("Update");
+  Roi.getBounds(x3, y3, roiIw, roiIh);
+  userShiftx = midimx + x3 - x2;
+  userShifty = midimy + y3 - y2;
+  for(scl = 1; scl <roinum; scl++){
     roiManager("select",scl);
+    Roi.getBounds(Ix, Iy, roiIw, roiIh);
     run("Scale... ", "x=xscale y=yscale centered");
-    waitForUser("Move and adjust scaled ROI");
+    roiManager("Update");
+    Roi.getBounds(CurrX, CurrY, Currw, Currh);
+    autoDx = (xscale*(Ix-Tx)+userShiftx-CurrX);
+    autoDy = (yscale*(Iy-Ty)+userShifty-CurrY);
+    roiManager("translate", autoDx, autoDy);}
+  for(final=1; final<roinum; final++){
+    roiManager("select",final);
+    waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
   outname=outplatepath+"/"+name+".zip";
   roiManager("save", outname);
   roiManager("select",0);
   roiManager("Update");
-  close();}
+  close();
+  open(labeltempfile);}
     
   //If images have previously been analyzed
   if (repeatType == "Yes"){
