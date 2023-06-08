@@ -161,6 +161,7 @@ for (i=(startAt-1); i<(endAt); i++){
   roiManager("Update");
   Roi.getBounds(CurrX, CurrY, Currw, Currh);
   roiManager("translate", (xscale*(x1-Tx)+midimx-CurrX), (yscale*(y1-Ty)+midimy-CurrY));
+  roiManager("select", 0);
   Roi.getBounds(x2, y2, Currw, Currh);
   print(CurrX + " " + x2);
   waitForUser("Move and adjust " + Roi.getName);
