@@ -164,8 +164,8 @@ for (i=(startAt-1); i<(endAt); i++){
   waitForUser("Move and adjust " + Roi.getName);
   roiManager("Update");
   Roi.getBounds(x2, y2, roiIw, roiIh);
-  userShiftx = midimx+(x2-CurrX);
-  userShifty = midimy+(y2-CurrY);
+  userShiftx = midimx-(x2-CurrX);
+  userShifty = midimy-(y2-CurrY);
   for(scl = 1; scl <roinum; scl++){
     roiManager("select",scl);
     Roi.getBounds(Ix, Iy, roiIw, roiIh);
@@ -175,7 +175,7 @@ for (i=(startAt-1); i<(endAt); i++){
     autoDx = -CurrX+xscale*(Ix-Tx)+userShiftx;
     autoDy = -CurrY+yscale*(Iy-Ty)+userShifty;
     roiManager("translate", autoDx, autoDy);}
-  for(final=0; final<roinum; final++){
+  for(final=1; final<roinum; final++){
     roiManager("select",final);
     waitForUser("Move and adjust " + Roi.getName);
     roiManager("Update");}
