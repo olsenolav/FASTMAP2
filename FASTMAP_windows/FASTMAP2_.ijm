@@ -159,7 +159,7 @@ for (i=(startAt-1); i<(endAt); i++){
   Roi.getBounds(x1, y1, roiIw, roiIh);
   run("Scale... ", "x=xscale y=yscale centered");
   Roi.getBounds(CurrX, CurrY, Currw, Currh);
-  roiManager("translate", (-CurrX+xscale(x1-Tx)+midimx), (-CurrY+yscale(y1-Ty)+midimy));
+  roiManager("translate", (-CurrX+xscale*(x1-Tx)+midimx), (-CurrY+yscale*(y1-Ty)+midimy));
   roiManager("Update");
   waitForUser("Move and adjust " + Roi.getName);
   roiManager("Update");
