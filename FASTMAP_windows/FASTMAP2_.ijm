@@ -161,8 +161,8 @@ for (i=(startAt-1); i<(endAt); i++){
     run("Scale... ", "x=xscale y=yscale centered");
     roiManager("Update");
     Roi.getBounds(CurrX, CurrY, Currw, Currh);
-    autoDx = midimx-CurrX+xscale*(Ix-Tx);
-    autoDy = midimy-CurrY+yscale*(Iy-Ty);
+    autoDx = sectionw+Lx-CurrX+xscale*(Ix-Tx);
+    autoDy = sectionh+Ly-CurrY+yscale*(Iy-Ty);
     roiManager("translate", autoDx, autoDy);}
   for(final=0; final<roinum; final++){
     roiManager("select",final);
