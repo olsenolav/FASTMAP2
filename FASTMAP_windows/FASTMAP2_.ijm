@@ -158,6 +158,7 @@ for (i=(startAt-1); i<(endAt); i++){
   roiManager("select",0);
   Roi.getBounds(x1, y1, roiIw, roiIh);
   run("Scale... ", "x=xscale y=yscale centered");
+  roiManager("Update");
   Roi.getBounds(CurrX, CurrY, Currw, Currh);
   roiManager("translate", (-CurrX+xscale*(x1-Tx)+1000), (-CurrY+yscale*(y1-Ty)+1000));
   roiManager("Update");
