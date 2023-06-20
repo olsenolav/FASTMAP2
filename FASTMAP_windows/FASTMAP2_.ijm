@@ -363,7 +363,7 @@ if (inten) {
     saveFileName="RegionalIntensities.csv";
     run("8-bit");
     setAutoThreshold("Default dark");
-    run("Set Measurements...", "area mean min area_fraction redirect=None decimal=4");
+    run("Set Measurements...", "area mean min integrated area_fraction redirect=None decimal=4");
     listROI=roiManager("count");
     roiManager("select", 0);
     rName=Roi.getName();
@@ -371,6 +371,8 @@ if (inten) {
     regionArea=getResult("Area", 0);
     intDens=getResult("IntDen", 0);
     avgGray=getResult("Mean", 0);
+    minGray=getResult("Min", 0);
+    maxGray=getResult("Max",0);
     close("Results");
     
     if (isOpen("R1")) {
@@ -385,11 +387,13 @@ if (inten) {
       for(j=1; j < listROI; j++) {
         oiManager("select", j);
         rName=Roi.getName();
-        run("Set Measurements...", "area mean min area_fraction redirect=None decimal=4");
+        run("Set Measurements...", "area mean min integrated area_fraction redirect=None decimal=4");
         roiManager("Measure");
         regionArea=getResult("Area", 0);
         intDens=getResult("IntDen", 0);
         avgGray=getResult("Mean", 0);
+        minGray=getResult("Min", 0);
+        maxGray=getResult("Max",0);
         close("Results");
         selectWindow("R1");
         IJ.renameResults("R1","Results");
@@ -398,6 +402,8 @@ if (inten) {
         setResult("Region Area", j + numAlreadyIn, regionArea);
         setResult("Integrated Density", j+numAlreadyIn, intDens);
         setResult("Mean Gray Value", j+numAlreadyIn, avgGray);
+        setResult("Min Gray Value", j+numAlreadyIn, minGray);
+        setResult("Max Gray Value", j+numAlreadyIn, maxGray);
         updateResults;
         IJ.renameResults("Results","R1");
       }
@@ -411,7 +417,7 @@ if (inten) {
       for(j=1; j < listROI; j++) {
         roiManager("select", j);
         rName=Roi.getName();
-        run("Set Measurements...", "area mean min area_fraction redirect=None decimal=4");
+        run("Set Measurements...", "area mean min integrated area_fraction redirect=None decimal=4");
         roiManager("Measure");
         regionArea=getResult("Area", 0);
         intDens=getResult("IntDen", 0);
@@ -424,6 +430,8 @@ if (inten) {
         setResult("Region Area", j, regionArea);
         setResult("Integrated Density", j, intDens);
         setResult("Mean Gray Value", j, avgGray);
+        setResult("Min Gray Value", j, minGray);
+        setResult("Max Gray Value", j, maxGray);
         updateResults;
         IJ.renameResults("Results","R1");
       }
