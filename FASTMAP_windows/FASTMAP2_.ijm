@@ -360,7 +360,6 @@ for (i=(startAt-1); i<(endAt); i++){
 }
 }
 else if (inten) {
-    open(labeltempfile);
     saveFileName="RegionalIntensities.csv";
     run("8-bit");
     setAutoThreshold("Default dark");
