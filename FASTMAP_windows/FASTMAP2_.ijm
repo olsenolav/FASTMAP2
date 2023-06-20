@@ -416,7 +416,7 @@ if (inten) {
       setResult("Integrated Density", 0, intDens);
       setResult("Mean Gray Value", 0, avgGray);
       setResult("Min Gray Value", 0, minGray);
-      setResult("Mean Gray Value", 0, maxGray);
+      setResult("Max Gray Value", 0, maxGray);
       IJ.renameResults("Results","R1");
       for(j=1; j < listROI; j++) {
         roiManager("select", j);
