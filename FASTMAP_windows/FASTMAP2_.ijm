@@ -359,7 +359,7 @@ for (i=(startAt-1); i<(endAt); i++){
     close();
 }
 }
-else if (inten) {
+if (inten) {
     saveFileName="RegionalIntensities.csv";
     run("8-bit");
     setAutoThreshold("Default dark");
