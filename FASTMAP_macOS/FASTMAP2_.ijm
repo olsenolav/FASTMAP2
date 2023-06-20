@@ -373,7 +373,7 @@ for (i=(startAt-1); i<(endAt); i++){
     avgGray=getResult("Mean", 0);
     close("Results");
     
-    if (isOpen("R1") {
+    if (isOpen("R1")) {
       selectWindow("R1");
       IJ.renameResults("R1","Results");
       numAlreadyIn=nResults;
