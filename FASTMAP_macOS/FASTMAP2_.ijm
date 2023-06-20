@@ -407,6 +407,7 @@ for (i=(startAt-1); i<(endAt); i++){
       setResult("Region Area", 0, regionArea);
       setResult("Integrated Density", 0, intDens);
       setResult("Mean Gray Value", 0, avgGray);
+      IJ.renameResults("Results","R1");
       for(j=1; j < listROI; j++) {
         roiManager("select", j);
         rName=Roi.getName();
