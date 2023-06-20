@@ -383,6 +383,8 @@ if (inten) {
       setResult("Region Area", 0 + numAlreadyIn, regionArea);
       setResult("Integrated Density", 0+numAlreadyIn, intDens);
       setResult("Mean Gray Value", 0+numAlreadyIn, avgGray);
+      setResult("Min Gray Value", 0+numAlreadyIn, minGray);
+      setResult("Max Gray Value", 0+numAlreadyIn, maxGray);
       IJ.renameResults("Results","R1");
       for(j=1; j < listROI; j++) {
         oiManager("select", j);
@@ -413,6 +415,8 @@ if (inten) {
       setResult("Region Area", 0, regionArea);
       setResult("Integrated Density", 0, intDens);
       setResult("Mean Gray Value", 0, avgGray);
+      setResult("Min Gray Value", 0, minGray);
+      setResult("Mean Gray Value", 0, maxGray);
       IJ.renameResults("Results","R1");
       for(j=1; j < listROI; j++) {
         roiManager("select", j);
@@ -422,6 +426,8 @@ if (inten) {
         regionArea=getResult("Area", 0);
         intDens=getResult("IntDen", 0);
         avgGray=getResult("Mean", 0);
+        minGray=getResult("Min", 0);
+        maxGray=getResult("Max",0);
         close("Results");
         selectWindow("R1");
         IJ.renameResults("R1","Results");
