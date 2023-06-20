@@ -408,7 +408,7 @@ for (i=(startAt-1); i<(endAt); i++){
       setResult("Integrated Density", 0, intDens);
       setResult("Mean Gray Value", 0, avgGray);
       for(j=1; j < listROI; j++) {
-        oiManager("select", j);
+        roiManager("select", j);
         rName=Roi.getName();
         run("Set Measurements...", "area min_&_max_gray_value integrated_density area_fraction mean_gray_value redirect=None decimal=4");
         roiManager("Measure");
