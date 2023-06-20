@@ -363,7 +363,7 @@ if (inten) {
     saveFileName="RegionalIntensities.csv";
     run("8-bit");
     setAutoThreshold("Default dark");
-    run("Set Measurements...", "area min_&_max_gray_value integrated_density area_fraction mean_gray_value display redirect=None decimal=4");
+    run("Set Measurements...", "area mean_gray_value display redirect=None decimal=4");
     listROI=roiManager("count");
     roiManager("select", 0);
     rName=Roi.getName();
@@ -385,7 +385,7 @@ if (inten) {
       for(j=1; j < listROI; j++) {
         oiManager("select", j);
         rName=Roi.getName();
-        run("Set Measurements...", "area min_&_max_gray_value integrated_density area_fraction mean_gray_value display redirect=None decimal=4");
+        run("Set Measurements...", "area mean_gray_value display redirect=None decimal=4");
         roiManager("Measure");
         regionArea=getResult("Area", 0);
         intDens=getResult("IntDen", 0);
@@ -411,7 +411,7 @@ if (inten) {
       for(j=1; j < listROI; j++) {
         roiManager("select", j);
         rName=Roi.getName();
-        run("Set Measurements...", "area min_&_max_gray_value integrated_density area_fraction mean_gray_value display redirect=None decimal=4");
+        run("Set Measurements...", "area mean_gray_value display redirect=None decimal=4");
         roiManager("Measure");
         regionArea=getResult("Area", 0);
         intDens=getResult("IntDen", 0);
