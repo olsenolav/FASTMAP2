@@ -125,7 +125,7 @@ for (i=(startAt-1); i<(endAt); i++){
   //setBatchMode(true);
   getDimensions(imh,imw,chan,sli,fra);
   ROIname="RoiSet_"+plateNum+".zip";
-  ROIfile=platesubfold+ROIname;
+  ROIfile=platepath+ROIname;
   roiManager("Open", ROIfile);
   roinum=roiManager("count");
   roiManager("deselect");
