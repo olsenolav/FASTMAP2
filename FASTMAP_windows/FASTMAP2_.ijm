@@ -184,7 +184,7 @@ for (i=(startAt-1); i<(endAt); i++){
   Dialog.addCheckbox("skip others?", false);
   Dialog.show();
   skipOthers = Dialog.getCheckbox();
-  if (skipOthers = false) {
+  if (skipOthers == false) {
   for(final=1; final<roinum; final++){
     roiManager("select",final);
     waitForUser("Move and adjust " + Roi.getName);
