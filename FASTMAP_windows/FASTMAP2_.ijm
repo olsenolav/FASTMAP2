@@ -180,10 +180,15 @@ for (i=(startAt-1); i<(endAt); i++){
     autoDx = (xscale*(Ix-Tx)+userShiftx-CurrX);
     autoDy = (yscale*(Iy-Ty)+userShifty-CurrY);
     roiManager("translate", autoDx, autoDy);}
+  Dialog.create("Skip Others?");
+  Dialog.addCheckbox("skip others?", false);
+  Dialog.show();
+  skipOthers = Dialog.getCheckbox();
+  if (skipOthers = false) {
   for(final=1; final<roinum; final++){
     roiManager("select",final);
     waitForUser("Move and adjust " + Roi.getName);
-    roiManager("Update");}
+    roiManager("Update");}}
   outname=outplatepath+"/"+name+".zip";
   roiManager("save", outname);
   roiManager("select",0);
