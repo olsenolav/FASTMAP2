@@ -51,6 +51,7 @@ autocount=autolist.length;
 labelfolder=Dialog.getChoice;
 labelfile=path+labelfolder;
 labellist=getFileList(labelfile);
+Array.sort(labellist);
 labelcount=labellist.length;
 
 Dialog.create("FASTMAP");
