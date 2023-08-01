@@ -104,17 +104,20 @@ for (i=(startAt-1); i<(endAt); i++){
   //Picking registration
   //If images have yet to be analyzed
   if (repeatType == "No"){
-  platesubfoldtif=platesubfoldend+".tif"; 
-  open(platesubfold+platesubfoldtif);
+  platesubfold=plateparentname[(plateparentname.length)-1];
+  platesubfoldtif=platesubfold+'.tif';
+  open(platepath+platesubfoldtif);
   waitForUser("Move this image to the right of your screen then press 'OK'");
+  corrScale = false;
+  while (corrScale == false) {
   Dialog.create("Image Registration");
-  Dialog.addMessage("2. Which of the plates most closely resembles your image?");
+  Dialog.addMessage("Which of the plates most closely resembles your image?");
   open(autotempfile);
   setTool("rectangle");
-  waitForUser("1. Draw a rectangle around the tissue section then press 'OK'");
+  waitForUser("Draw a rectangle around the tissue section then press 'OK'");
   roiManager("Add");
   roiManager("Select", 0);
-  Roi.getBounds(Lx,Ly,sectionw,sectionh);
+  Roi.getBounds(x,y,sectionw,sectionh);
   roiManager("Select", 0);
   roiManager("Deselect");
   roiManager("Delete");
@@ -123,6 +126,11 @@ for (i=(startAt-1); i<(endAt); i++){
   plateNum=Dialog.getNumber;
   close();
   close();
+  Dialog.create("Is ROI correct?");
+  Dialog.addCheckbox("Check if ROI matches and is scaled properly:", true);
+  Dialog.show();
+  corrScale = Dialog.getCheckbox();
+  }
  
   //Applying plate to the image
   open(autotempfile);
