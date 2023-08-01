@@ -54,6 +54,7 @@ autocount=autolist.length;
 Labelfolder=Dialog.getChoice;
 labelfile=path+Labelfolder;
 labellist=getFileList(labelfile);
+Array.sort(autolist);
 Array.sort(labellist);
 labelcount=labellist.length;
 
