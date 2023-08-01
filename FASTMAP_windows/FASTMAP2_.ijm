@@ -106,6 +106,7 @@ for (i=(startAt-1); i<(endAt); i++){
   if (repeatType == "No"){
   corrScale = false;
   while (corrScale == false) {
+  close("*");
   platesubfoldtif=platesubfoldend+".tif"; 
   open(platesubfold+platesubfoldtif);
   waitForUser("Move this image to the right of your screen then press 'OK'");
