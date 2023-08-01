@@ -103,12 +103,12 @@ for (i=(startAt-1); i<(endAt); i++){
 
   //Picking registration
   //If images have yet to be analyzed
+  corrScale = false;
+  while (corrScale == false) {
   if (repeatType == "No"){
   platesubfoldtif=platesubfoldend+".tif"; 
   open(platesubfold+platesubfoldtif);
   waitForUser("Move this image to the right of your screen then press 'OK'");
-  corrScale = false;
-  while (corrScale == false) {
   Dialog.create("Image Registration");
   Dialog.addMessage("2. Which of the plates most closely resembles your image?");
   open(autotempfile);
@@ -129,7 +129,7 @@ for (i=(startAt-1); i<(endAt); i++){
   Dialog.addCheckbox("Check if ROI matches and is scaled properly:", true);
   Dialog.show();
   corrScale = Dialog.getCheckbox();
-  }
+ 
  
   //Applying plate to the image
   open(autotempfile);
@@ -187,6 +187,7 @@ for (i=(startAt-1); i<(endAt); i++){
     autoDx = (xscale*(Ix-Tx)+userShiftx-CurrX);
     autoDy = (yscale*(Iy-Ty)+userShifty-CurrY);
     roiManager("translate", autoDx, autoDy);}
+}
   Dialog.create("Skip Others?");
   Dialog.addCheckbox("skip others?", false);
   Dialog.show();
