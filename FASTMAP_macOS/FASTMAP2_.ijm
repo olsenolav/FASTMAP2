@@ -104,6 +104,8 @@ for (i=(startAt-1); i<(endAt); i++){
   platesubfoldtif=platesubfold+'.tif';
   open(platepath+platesubfoldtif);
   waitForUser("Move this image to the right of your screen then press 'OK'");
+  corrScale = false;
+  while (corrScale == false) {
   Dialog.create("Image Registration");
   Dialog.addMessage("Which of the plates most closely resembles your image?");
   open(autotempfile);
@@ -120,6 +122,11 @@ for (i=(startAt-1); i<(endAt); i++){
   plateNum=Dialog.getNumber;
   close();
   close();
+  Dialog.create("Is ROI correct?");
+  Dialog.addCheckbox("Check if ROI matches and is scaled properly:", true);
+  Dialog.show();
+  corrScale = Dialog.getCheckbox();
+  }
  
   //Applying plate to the image
   open(autotempfile);
